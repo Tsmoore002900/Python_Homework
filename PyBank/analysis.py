@@ -2,7 +2,7 @@ import os
 import csv
 # Path to collect data from the Resources folder
 graduation_csv = os.path.join('..', 'Resources', 'budget_data.csv')
-#path to save
+#path to make txt.file
 file_to_save = os.path.join('..', 'analysis', 'budget_analysis.txt')
 
 # List to store data
@@ -14,10 +14,12 @@ prvious_month = 0
 current_month = 0
 profit_loss_change = 0
 
+#open data and set header
 with open(graduation_csv, newline="") as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
     csv_header =next(csv_reader)
 
+    # collect and calculate data
     for row in csv_reader:
         count_months += 1
         current_month = int(row[1])
@@ -54,5 +56,7 @@ with open(graduation_csv, newline="") as csvfile:
             f"Greatest Increase in Profits: {best_month} ${greatest_increase}\n"
             f"Greatest Decrease in Profits: {worst_month} ${greatest_decrease}\n")
         print(bank_analysis)
+        
+        #wirte
         txt_file.write(bank_analysis)
 

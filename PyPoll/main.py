@@ -1,10 +1,9 @@
-#add dependencies
 import os
 import csv
 
 # Path to collect data from the Resources folder
 election_data = os.path.join('..', 'Resources', 'election_data.csv')
-# path to save
+#path to make txt.file
 file_to_save = os.path.join('..', 'analysis','election_analysis.txt')
 
 #List to store Data
@@ -15,7 +14,7 @@ winning_candidate = ""
 winning_count = 0
 winning_percentage = 0
 
-#Open and read the file. 
+#Open and read the file 
 with open(election_data) as election_data:
     file_reader = csv.reader(election_data) 
     headers = next(file_reader)
@@ -39,6 +38,7 @@ with open(file_to_save, "w") as txt_file:
     print(election_data, end="")
     txt_file.write(election_data)
 
+    # Calculate votes and percentages
     for candidate_name in candidate_votes: 
         votes = candidate_votes[candidate_name]
         vote_percentage = float(votes) / float(total_votes) * 100
